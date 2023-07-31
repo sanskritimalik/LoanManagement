@@ -10,7 +10,7 @@ It uses [Auth0](https://auth0.com/) service to authenticate users and [mongodb](
 
 It is an app that allows authenticated users to go through a loan application. It doesn’t have to contain too many fields, but at least “amount required” and “loan term.” All the loans will be assumed to have a “weekly” repayment frequency. After the loan is approved, the user must be able to submit the weekly loan repayments. It can be a simplified repay functionality, which won’t need to check if the dates are correct but will just set the weekly amount to be repaid.
 
-Choices I made for the application
+- Choices I made for the application
     - Used OAuth to integrate Authentication and Authorisation using Jwt token
     - Golang for implementation as it has a simple easy to understand syntax
     - MongoDb to store data to allow flexibility to change the structure of data with minimal changes
@@ -35,48 +35,31 @@ Github repo
 https://github.com/sanskritimalik/LoanManagement
 
 Features
-Customer signs up via the Oauth Portal and uses token to access any APIs associated with application
-Customer creates a loan
-Admin approves the loan
-Customer can only view self owned loan
-Customer can repay the loan only once Admin approves the loan
-Once customer pays all the scheduled payment the Loan is marked automatically marked as Paid
-Customer create a loan: Customer submit a loan request defining amount and term example:
-Request amount of 10.000 $ with term 3 on date 7th Feb 2022
+- Customer signs up via the Oauth Portal and uses token to access any APIs associated with application
+- Customer creates a loan
+- Admin approves the loan
+- Customer can only view self owned loan
+- Customer can repay the loan only once Admin approves the loan
+- Once customer pays all the scheduled payment the Loan is marked automatically marked as Paid
+- Customer create a loan: Customer submit a loan request defining amount and term example:
+- Request amount of 10.000 $ with term 3 on date 7th Feb 2022
 customer will generate 3 scheduled repayments:
 14th Feb 2022 with amount 3.333,33 $
 21st Feb 2022 with amount 3.333,33 $
 28th Feb 2022 with amount 3.333,34 $
 the loan and scheduled repayments will have state PENDING
-Admin approve the loan:
-Admin change the pending loans to state APPROVED
-Customer can view loan belong to him:
-Add a policy check to make sure that the customers can view them own loan only.
-Customer add a repayments:
-Customer add a repayment with amount greater or equal to the scheduled repayment
-The scheduled repayment change the status to PAID
-If all the scheduled repayments connected to a loan are PAID automatically also the loan become PAID
+- Admin approve the loan:
+- Admin change the pending loans to state APPROVED
+- Customer can view loan belong to him:
+- Add a policy check to make sure that the customers can view them own loan only.
+- Customer add a repayments:
+- Customer add a repayment with amount greater or equal to the scheduled repayment
+- The scheduled repayment change the status to PAID
+- If all the scheduled repayments connected to a loan are PAID automatically also the loan become PAID
 
 Packages used
 Oauth Service - https://auth0.com/
 MongoDB - https://www.mongodb.com/
-
-Steps to Set up on local machine
-Get the application files
-download the zip or clone it from github - https://github.com/sanskritimalik/LoanManagement
-put it at <your-sites-or-htdocs-folder-path> from where you can load the application
-Create a DB on MongoDB with name "LoanManagement"
-Add Collections
-run php artisan migrate
-run php artisan db:seed
-run php artisan serve
-You can access the app at http://127.0.0.1:8000/
-All the API urls will of format
-/api/v1/<controller/method>
-If you were to access the app at http://127.0.0.1:8000/ then the login route API url will be
-http://127.0.0.1:8000/api/v1/auth/login
-List of avaiable End Points
-I had a virtual host setup on my mac configured with http://laraloan.test domain, so the routes looked like :
 
 Auth Routes
 
